@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+	\PYG{k+kt}{WIRE} \PYG{n}{regINSTR} \PYG{n}{regMAR}\PYG{p}{;} \PYG{k+kt}{READ} \PYG{n}{regINSTR}\PYG{p}{;} \PYG{k+kt}{WRITE} \PYG{n}{regMAR}\PYG{p}{;} \PYG{c+c1}{\PYGZhy{}\PYGZhy{} write address from regINSTR to regMAR}
+	\PYG{k+kt}{WIRE} \PYG{n}{mem} \PYG{n}{regA}\PYG{p}{;} \PYG{k+kt}{READ} \PYG{n}{mem}\PYG{p}{;} \PYG{k+kt}{WRITE} \PYG{n}{regA}\PYG{p}{;} \PYG{c+c1}{\PYGZhy{}\PYGZhy{} write data from mem to regA}
+\end{Verbatim}
