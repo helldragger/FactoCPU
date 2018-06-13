@@ -1,0 +1,60 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Pourquoi utiliser Factorio?}{chapter.1}% 2
+\BOOKMARK [2][-]{subsection.1.1.1}{Qu'est-ce-que Factorio?}{section.1.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.2}{Les circuits logiques}{section.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.3}{L'\351metteur de constante}{section.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.1.4}{Le combinateur arithm\351tique}{section.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.1.5}{Le combinateur logique}{section.1.1}% 7
+\BOOKMARK [1][-]{section.1.2}{Pr\351sentation du projet}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.3}{Le language}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.4}{Le processeur d'instructions}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.5}{La manipulation de donn\351es}{chapter.1}% 11
+\BOOKMARK [1][-]{section.1.6}{Analyse du probl\350me}{chapter.1}% 12
+\BOOKMARK [-1][-]{part.1}{Micro contr\364lleur - architecture}{}% 13
+\BOOKMARK [0][-]{chapter.2}{R\351sum\351}{part.1}% 14
+\BOOKMARK [1][-]{section.2.1}{En quelques nombres}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.2}{Survol de l'organisation spatiale}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.3}{R\351sum\351 des composants}{chapter.2}% 17
+\BOOKMARK [0][-]{chapter.3}{M\351moire in-game}{part.1}% 18
+\BOOKMARK [1][-]{section.3.1}{Cellule m\351moire de base}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.2}{Registres basiques}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.3}{M\351moire \340 acc\350s al\351atoire - RAM}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.4}{M\351moire \340 lecture seule - ROM}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.5}{Registre d'adresse m\351moire - MAR}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.6}{Registre de donn\351e m\351moire - MDR}{chapter.3}% 24
+\BOOKMARK [0][-]{chapter.4}{S\351quenceur d'instructions}{part.1}% 25
+\BOOKMARK [1][-]{section.4.1}{Registre program counter - PC}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.2}{Registre d'instruction - INSTR}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.3}{Cycle R\351cup\351ration-D\351codage-\311xecution}{chapter.4}% 28
+\BOOKMARK [1][-]{section.4.4}{Instructions internes et externes}{chapter.4}% 29
+\BOOKMARK [0][-]{chapter.5}{Gestion d'instructions}{part.1}% 30
+\BOOKMARK [1][-]{section.5.1}{G\351n\351ralit\351s}{chapter.5}% 31
+\BOOKMARK [1][-]{section.5.2}{Lecture-\311criture}{chapter.5}% 32
+\BOOKMARK [0][-]{chapter.6}{Op\351rations arithm\351tiques}{part.1}% 33
+\BOOKMARK [1][-]{section.6.1}{Registre arithm\351tique - A}{chapter.6}% 34
+\BOOKMARK [1][-]{section.6.2}{Unit\351 Arithm\351tique et Logique - ALU}{chapter.6}% 35
+\BOOKMARK [0][-]{chapter.7}{Op\351rations vectorielles}{part.1}% 36
+\BOOKMARK [1][-]{section.7.1}{Registre vectoriel - VECT}{chapter.7}% 37
+\BOOKMARK [1][-]{section.7.2}{Registre mask - MASK}{chapter.7}% 38
+\BOOKMARK [1][-]{section.7.3}{Unit\351 Vectorielle Arithm\351tique et Logique - VALU}{chapter.7}% 39
+\BOOKMARK [-1][-]{part.2}{FactorioScript}{}% 40
+\BOOKMARK [0][-]{chapter.8}{Pr\351sentation}{part.2}% 41
+\BOOKMARK [1][-]{section.8.1}{Le fond}{chapter.8}% 42
+\BOOKMARK [1][-]{section.8.2}{La forme}{chapter.8}% 43
+\BOOKMARK [0][-]{chapter.9}{Syntaxe}{part.2}% 44
+\BOOKMARK [0][-]{chapter.10}{Signification en jeu}{part.2}% 45
+\BOOKMARK [-1][-]{part.3}{Compilateur script vers Factorio}{}% 46
+\BOOKMARK [0][-]{chapter.11}{Compilation ...}{part.3}% 47
+\BOOKMARK [1][-]{section.11.1}{... des instructions}{chapter.11}% 48
+\BOOKMARK [1][-]{section.11.2}{... du blueprint}{chapter.11}% 49
+\BOOKMARK [0][-]{chapter.12}{Autres usages}{part.3}% 50
+\BOOKMARK [1][-]{section.12.1}{Compilation en logique s\351quentielle}{chapter.12}% 51
+\BOOKMARK [-1][-]{part.4}{Annexes}{}% 52
+\BOOKMARK [0][-]{chapter.13}{Instructions}{part.4}% 53
+\BOOKMARK [1][-]{section.13.1}{Memory}{chapter.13}% 54
+\BOOKMARK [1][-]{section.13.2}{Jump and conditionals}{chapter.13}% 55
+\BOOKMARK [1][-]{section.13.3}{Arithmetic}{chapter.13}% 56
+\BOOKMARK [1][-]{section.13.4}{Vectorial}{chapter.13}% 57
+\BOOKMARK [0][-]{chapter.14}{Micro-instructions}{part.4}% 58
+\BOOKMARK [0][-]{chapter.15}{Micro-code}{part.4}% 59
+\BOOKMARK [0][-]{chapter.16}{Bootloader}{part.4}% 60

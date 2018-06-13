@@ -1,0 +1,79 @@
+\babel@toc {french}{}
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}Pourquoi utiliser Factorio?}{2}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Qu'est-ce-que Factorio?}{2}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Les circuits logiques}{3}{subsection.1.1.2}
+\contentsline {paragraph}{\nonumberline Les r\IeC {\'e}seaux logiques}{3}{section*.10}
+\contentsline {subsection}{\numberline {1.1.3}L'\IeC {\'e}metteur de constante}{4}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}Le combinateur arithm\IeC {\'e}tique}{5}{subsection.1.1.4}
+\contentsline {paragraph}{\nonumberline Branchements}{5}{section*.13}
+\contentsline {paragraph}{\nonumberline Retour de signal}{6}{section*.14}
+\contentsline {paragraph}{\nonumberline Signal ['Chacun']}{6}{section*.15}
+\contentsline {paragraph}{\nonumberline Jonction de r\IeC {\'e}seaux}{6}{section*.16}
+\contentsline {subsection}{\numberline {1.1.5}Le combinateur logique}{6}{subsection.1.1.5}
+\contentsline {section}{\numberline {1.2}Pr\IeC {\'e}sentation du projet}{7}{section.1.2}
+\contentsline {paragraph}{\nonumberline Quel est ce projet?}{7}{section*.18}
+\contentsline {section}{\numberline {1.3}Le language}{7}{section.1.3}
+\contentsline {paragraph}{\nonumberline Qu'es ce qu'un language?}{7}{section*.19}
+\contentsline {paragraph}{\nonumberline Qu'es ce qu'un mot?}{7}{section*.20}
+\contentsline {paragraph}{\nonumberline Qu'es ce qu'une instruction?}{8}{section*.21}
+\contentsline {section}{\numberline {1.4}Le processeur d'instructions}{9}{section.1.4}
+\contentsline {paragraph}{\nonumberline Une histoire de contexte}{9}{section*.23}
+\contentsline {paragraph}{\nonumberline Un ballet synchronis\IeC {\'e} de micro-op\IeC {\'e}rations}{10}{section*.26}
+\contentsline {section}{\numberline {1.5}La manipulation de donn\IeC {\'e}es}{11}{section.1.5}
+\contentsline {paragraph}{\nonumberline Une m\IeC {\'e}moire de travail!}{11}{section*.27}
+\contentsline {paragraph}{\nonumberline Des op\IeC {\'e}rations math\IeC {\'e}matiques!}{12}{section*.31}
+\contentsline {section}{\numberline {1.6}Analyse du probl\IeC {\`e}me}{13}{section.1.6}
+\contentsline {paragraph}{\nonumberline Interpr\IeC {\^e}ter n'importe quel language}{13}{section*.33}
+\contentsline {part}{\numberline {I}Micro contr\IeC {\^o}lleur - architecture}{16}{part.1}
+\contentsline {chapter}{\numberline {2}R\IeC {\'e}sum\IeC {\'e}}{17}{chapter.2}
+\contentsline {paragraph}{\nonumberline Une machine de Turing compl\IeC {\`e}te?}{17}{section*.34}
+\contentsline {section}{\numberline {2.1}En quelques nombres}{17}{section.2.1}
+\contentsline {section}{\numberline {2.2}Survol de l'organisation spatiale}{17}{section.2.2}
+\contentsline {section}{\numberline {2.3}R\IeC {\'e}sum\IeC {\'e} des composants}{17}{section.2.3}
+\contentsline {chapter}{\numberline {3}M\IeC {\'e}moire in-game}{18}{chapter.3}
+\contentsline {paragraph}{\nonumberline Pr\IeC {\'e}cisions sur les pertes de courant}{18}{section*.35}
+\contentsline {section}{\numberline {3.1}Cellule m\IeC {\'e}moire de base}{18}{section.3.1}
+\contentsline {section}{\numberline {3.2}Registres basiques}{18}{section.3.2}
+\contentsline {section}{\numberline {3.3}M\IeC {\'e}moire \IeC {\`a} acc\IeC {\`e}s al\IeC {\'e}atoire - RAM}{18}{section.3.3}
+\contentsline {section}{\numberline {3.4}M\IeC {\'e}moire \IeC {\`a} lecture seule - ROM}{18}{section.3.4}
+\contentsline {section}{\numberline {3.5}Registre d'adresse m\IeC {\'e}moire - MAR}{18}{section.3.5}
+\contentsline {section}{\numberline {3.6}Registre de donn\IeC {\'e}e m\IeC {\'e}moire - MDR}{18}{section.3.6}
+\contentsline {chapter}{\numberline {4}S\IeC {\'e}quenceur d'instructions}{19}{chapter.4}
+\contentsline {section}{\numberline {4.1}Registre program counter - PC}{19}{section.4.1}
+\contentsline {section}{\numberline {4.2}Registre d'instruction - INSTR}{19}{section.4.2}
+\contentsline {section}{\numberline {4.3}Cycle R\IeC {\'e}cup\IeC {\'e}ration-D\IeC {\'e}codage-\IeC {\'E}xecution}{19}{section.4.3}
+\contentsline {section}{\numberline {4.4}Instructions internes et externes}{19}{section.4.4}
+\contentsline {chapter}{\numberline {5}Gestion d'instructions}{20}{chapter.5}
+\contentsline {section}{\numberline {5.1}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{20}{section.5.1}
+\contentsline {section}{\numberline {5.2}Lecture-\IeC {\'E}criture}{20}{section.5.2}
+\contentsline {chapter}{\numberline {6}Op\IeC {\'e}rations arithm\IeC {\'e}tiques}{21}{chapter.6}
+\contentsline {section}{\numberline {6.1}Registre arithm\IeC {\'e}tique - A}{21}{section.6.1}
+\contentsline {section}{\numberline {6.2}Unit\IeC {\'e} Arithm\IeC {\'e}tique et Logique - ALU}{21}{section.6.2}
+\contentsline {chapter}{\numberline {7}Op\IeC {\'e}rations vectorielles}{22}{chapter.7}
+\contentsline {section}{\numberline {7.1}Registre vectoriel - VECT}{22}{section.7.1}
+\contentsline {section}{\numberline {7.2}Registre mask - MASK}{22}{section.7.2}
+\contentsline {section}{\numberline {7.3}Unit\IeC {\'e} Vectorielle Arithm\IeC {\'e}tique et Logique - VALU}{22}{section.7.3}
+\contentsline {part}{\numberline {II}FactorioScript}{23}{part.2}
+\contentsline {chapter}{\numberline {8}Pr\IeC {\'e}sentation}{24}{chapter.8}
+\contentsline {section}{\numberline {8.1}Le fond}{24}{section.8.1}
+\contentsline {section}{\numberline {8.2}La forme}{24}{section.8.2}
+\contentsline {chapter}{\numberline {9}Syntaxe}{25}{chapter.9}
+\contentsline {chapter}{\numberline {10}Signification en jeu}{26}{chapter.10}
+\contentsline {part}{\numberline {III}Compilateur script vers Factorio}{27}{part.3}
+\contentsline {chapter}{\numberline {11}Compilation ...}{28}{chapter.11}
+\contentsline {section}{\numberline {11.1}... des instructions}{28}{section.11.1}
+\contentsline {section}{\numberline {11.2}... du blueprint}{28}{section.11.2}
+\contentsline {chapter}{\numberline {12}Autres usages}{29}{chapter.12}
+\contentsline {section}{\numberline {12.1}Compilation en logique s\IeC {\'e}quentielle}{29}{section.12.1}
+\contentsline {part}{\numberline {IV}Annexes}{I}{part.4}
+\contentsline {chapter}{\numberline {13}Instructions}{II}{chapter.13}
+\contentsline {paragraph}{\nonumberline This is what programs can use}{II}{section*.36}
+\contentsline {paragraph}{\nonumberline Unconditional jump}{II}{section*.37}
+\contentsline {section}{\numberline {13.1}Memory}{II}{section.13.1}
+\contentsline {section}{\numberline {13.2}Jump and conditionals}{III}{section.13.2}
+\contentsline {section}{\numberline {13.3}Arithmetic}{III}{section.13.3}
+\contentsline {section}{\numberline {13.4}Vectorial}{IV}{section.13.4}
+\contentsline {chapter}{\numberline {14}Micro-instructions}{V}{chapter.14}
+\contentsline {chapter}{\numberline {15}Micro-code}{VI}{chapter.15}
+\contentsline {chapter}{\numberline {16}Bootloader}{VII}{chapter.16}
