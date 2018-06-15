@@ -1,0 +1,170 @@
+\chapter{Présentation du projet}
+\paragraph{Quel est ce projet?}
+
+La gestion de la logique de factorio et ses nombreuses applications en jeu permettent d'avoir un rendu particulièrement visuel et intuitif des applications de la logique en jeu.
+Pouvoir activer des machines ou des routes selon certaines conditions permet en effet de visualiser facilement le resultat de l evaluation d un signal logique.
+
+\begin{problem}
+Pouvons-nous interprêter un langage par le biais de ce systême logique et faire réagir un système en conséquence?
+\end{problem}
+
+Les blueprints de Factorio étant aussi juste des fichiers de données encodés en base64 pour un transfert plus aisé entre joueurs et factorio, il est donc possible de manipuler ces blueprints pour en générer de plus grand et plus complexes par programmation.
+
+Nous avons pour cela la librairie node.js factorio- blueprint créée par le moddeur Demipixel, qui permet de manipuler aisément des blueprints.
+Grâce à cela nous pouvons faire un lien entre du code écrit sur fichier texte et des systèmes copiable/collable dans factorio:
+
+
+\begin{problem}
+Pouvons nous donc interprêter n'importe quel language écrit dans un fichier sur factorio?
+\end{problem}
+
+\section{Le language}
+
+\paragraph{Qu'es ce qu'un language?}
+Un langage est un ensemble de mots ayant un sens défini dans un certain contexte.
+Dans notre cas, le language as pour but de représenter notre language mathématique habituel ainsi que des opérations de stockage: Nous voulons pouvoir manipuler des valeurs et les retrouver ou les sauvegarder pour plus tard.
+
+Nous voulons aussi pouvoir determiner des branches conditionnelles, pour determiner une séquence d'instructions à suivre selon des conditions particulières.
+
+\paragraph{Qu'es ce qu'un mot?}
+Dans notre cas nos mots seront différenciés par un nombre différent, sur le signal E.
+Ainsi par exemple, le mot de l'instruction LOAD ADDR CONTENT INTO REGISTER A sera la valeur 1 sur le signal E, ou le mot de  l'instruction NOT REGISTER A INTO A sera la valeur 16 sur ce meme signal.
+
+\begin{info}
+La liste détaillée de toutes les instructions disponibles est trouvable en annexes.
+\end{info}
+
+\paragraph{Qu'es ce qu'une instruction?}
+Nos instructions sont simplement la combinaison d'un mot d'instruction sur le signal E et d' arguments sur les signaux 1, 2 etc.. selon les instructions.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth,draft]{pics/factorio-instruction.png}
+
+\caption{Exemple d'instruction}
+\end{figure}
+
+
+
+Ces instructions vont être décodées et interprêtées par un processeur d'instructions, qui va gêrer la synchronisation des étapes entre recupération des instructions, leur décodage et l'exécution. 
+
+\section{Le processeur d'instructions}
+
+
+
+\paragraph{Une histoire de contexte}
+Afin de pouvoir analyser et synchroniser nos opérations, nous allons avoir besoin de stocker en mémoire l'instruction actuelle afin de pouvoir accèder à son code ou ses arguments en temps voulu.
+
+Pour cela nous allons avoir besoin d'un registre mémoire d'instruction!
+Qui contiendra notre instruction actuelle et ses arguments.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth,draft]{pics/factorio-diag-regINSTR.png}
+
+\caption{Diagramme d'utilisation d'une mémoire d'instruction}
+\end{figure}
+
+Afin de pouvoir savoir où chercher la prochaine instruction, nous allons aussi avoir besoin d'une adresse modifiable, vers laquelle nous diriger à chaque cycle d'instruction.
+
+Pour cela nous allons avoir besoin d'un autre registre mémoire nommé compteur de programme!
+Cela reste basiquement un compteur qui sera incrémenté à chaque nouveau cycle ou sera modifié selon le résultat d'une fonction conditionnelle par exemple.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth,draft]{pics/factorio-diag-regPC.png}
+
+\caption{Diagramme d'utilisation d'un compteur de programme}
+\end{figure}
+
+\paragraph{Un ballet synchronisé de micro-opérations}
+Avant de pouvoir manipuler des données ou donner des instructions entre différents composants, nous allons devoir synchroniser les lectures et écritures des différentes cellules mémoires de notre machine, que ce soit entre registre ou entre cpu et memoire.
+Pour cela nous allons avoir besoin de \textbf{micro-instructions} dédiées aux opérations les plus délicates et réservées au processeur, qui seront appelées pour certaines simultanément. 
+
+\begin{info}
+La liste complète de ces micro-instructions et le micro-code utilisé est disponible dans leurs propre sections respectives en annexes.
+\end{info}
+
+Par exemple, afin de pouvoir créer une opération simple telle que LOAD-A, nous allons devoir réaliser la séquence de micro-instructions simultanées suivante: 
+
+\begin{minted}{hs}
+WIRE regINSTR regMAR; READ regINSTR; WRITE regMAR; -- write address from regINSTR to regMAR
+WIRE mem regA; READ mem; WRITE regA; -- write data from mem to regA
+\end{minted}
+
+
+Nous allons donc avoir besoin d'un lecteur de micro-code basique afin de pouvoir éxecuter ces diverses micro-instructions selon un timing et un ordre précis pour pouvoir créer des opérations de plus haut niveau et préparer notre cycle de récupération-décodage-éxecution d'instructions, le tout restant facile à modifier et à agrandir!
+
+\section{La manipulation de données}
+
+\paragraph{Une mémoire de travail!}
+Quand l'on doit travailler sur une valeur particulière, il peut être utile de s'en souvenir le temps de la modifier, plutôt que d'aller stocker puis re-récuperer le résultat à chaque nouvelle opération sur cette valeur.
+Les temps d'accès et d'écriture mémoire sont aussi significatifs, raison de plus donc pour les diminuer un maximum.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth,draft]{pics/factorio-diag-regA.png}
+
+\caption{Diagramme d'utilisation d'une mémoire de travail}
+\end{figure}
+
+Nous allons donc avoir besoin d'une simple mémoire de travail, capable de contenir une valeur basique et qui se mets à jour avec le résultat des opérations sur cette valeur!
+
+
+Ceci dis, il peut nous arriver de vouloir travailler sur de multiples valeurs à la fois, via des vecteurs.
+Afin de pallier au souci de devoir faire les operations une par une, nous pouvons paralléliser les choses! 
+Pour cela nous aurons besoin d un mode de calcul vectoriel, et comme pour les calculs sur valeur simple, il nous faut aussi une mémoire de travail pour cela: un registre vectoriel!
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth,draft]{pics/factorio-diag-regV.png}
+
+\caption{Diagramme d'utilisation d'une mémoire de travail vectorielle}
+\end{figure}
+
+Si en revanche nous devons travailler sur un vecteur de valeurs, nous allons avoir besoin de pouvoir selectionner sur quelles valeurs travailler en plus des valeurs elles memes, pour eviter des problemes de calculs indéterminés.
+Les opérations sur le registre vectoriel ne devront alors se faire que sur les signaux acceptés par un masque vectoriel de booléen.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth,draft]{pics/factorio-diag-regVmask.png}
+
+\caption{Diagramme d'utilisation du masque vectoriel}
+\end{figure}
+
+\paragraph{Des opérations mathématiques!}
+Afin de pouvoir manipuler nos données stockées nous allons avoir besoin de regrouper et intégrer à notre système un maximum d'opérations mathématiques sur nos registres de travail.
+Pour le calcul sur valeur unique, nous allons pouvoir utiliser ce que l'on appelle communément une \textbf{Unité Arithmétique et Logique} traduit Arithmetic and Logic Unit (\textbf{ALU}).
+
+Ces unités permettent de sélectionner une opération particulière à partir d'un signal de commande et qui prends deux autres signaux en entrées, pour ressortir la valeur du résultat de cette opération.
+Ici le résultat est censé être stocké directement dans le registre A suite à la réalisation du calcul, qui sers de première entrée aux calculs.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth,draft]{pics/factorio-diag-ALU.png}
+
+\caption{Diagramme d'utilisation d'une ALU}
+\end{figure}
+
+De même pour notre manipulation de vecteurs, nous allons avoir besoin d'une \textbf{Unité Arithmétique et Logique Vectorielle} traduit Vectorial Arithmetic and Logic Unit (\textbf{VALU}), qui reste une simple ALU mais parallélisée pour un nombre donné de signaux.
+Ici nous avons créé un VALU pouvant calculer autant de signaux qu'une cellule mémoire vectorielle peut théoriquement gérer. 
+
+
+
+
+\section{Analyse du problème}
+
+
+
+
+\paragraph{Interprêter n'importe quel language}
+Pour interprêter n 'importe quel language, nous avons besoin d'un interpréteur de langage, qui peut donc avoir accès à sa définition stockée quelque part. Nous allons avoir besoin de mémoire. 
+
+Nous allons aussi avoir besoin d'une façon de réaliser toutes les opérations arithmétiques et logiques que l'on pourrait interprêter avec n'importe quel langage. Nous allons avoir besoin d'une Unité Logique et Arithmétique (ALU).
+
+Nous allons aussi avoir besoin de savoir à quel endroit de notre définition de langage nous nous trouvons à chaque instant pour determiner du prochain endroit a évaluer. Nous allons avoir besoin d un compteur de programme.
+
+Enfin pour simplifier cela nous allons avoir besoin d un moyen de coordonner les operations logiques entre la memoire et nos autres elements d interprêteur et de gerer les instructions pointees par le compteur de programme. Nous allons avoir besoin d'un séquenceur d instructions.
+
+Autrement dit, avec notre liste d instructions en annexes et notre systeme ci present, nous devrions pouvoir lire, interpréter et évaluer les instructions de tout programme utilisant les opérations mathématiques et logiques de base implémentées par factorio. 

@@ -1,0 +1,25 @@
+\chapter{Mémoire in-game}
+
+\paragraph{Précisions sur les pertes de courant}
+Sur Factorio, les pertes de courant ne font pas perdre les valeurs stockées dans les combinateurs, ainsi contrairement à la RAM habituelle qui perds ses données après une coupure électrique, la mémoire dans Factorio as de base un fonctionnement de mémoire non volatile, comme de la EEPROM ou de la mémoire Flash.
+
+\section{Cellule mémoire de base}
+% Registre 1ko
+
+\section{Registres basiques}
+% bus dédié
+
+\section{Mémoire à accès aléatoire - RAM}
+% bus mémoire et plage d'adresse partagée avec le bios en rom
+% adressage de chaque cellule par une addresse spécifique
+
+\section{Mémoire à lecture seule - ROM}
+% bus mémoire et plage d'adresse partagée avec la ram, contient l adresse 0 comme adresse de bootloading.
+% ecriture manuelle du contenu des lignes de code.
+
+\section{Registre d'adresse mémoire - MAR}
+% registre contenant la prochaine adresse mémoire visée
+
+\section{Registre de donnée mémoire - MDR}
+% registre contenant le contenu lu dans la dernière lecture mémoire
+% L autre sens pourrait aussi être obligé mais par soucis d'économies d'instructions, non.

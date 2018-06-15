@@ -1,0 +1,83 @@
+\chapter{Instructions}
+\paragraph{This is what programs can use}
+Those instructions are the lowest level instructions programs can use to write their logic with. 
+They are defined in the microcode using sequences of micro- instructions, which can be seen in the next annexe.
+Those instructions are sole the content of a single compiled program memory cell.
+
+\textbf{$A$} refers to the content of the register A.
+
+\textbf{$PC$} refers to the content of the register PC.
+
+\textbf{$V$} refers to the content of the register V.
+
+\textbf{$V_{mask}$} refers to the content of the register MASK.
+
+\textbf{$MEM[1]$} refers to the memory cell content at the address contained in signal [1].
+
+The symbol $\vec{ }$ means the value will be considered as a vector.
+
+\paragraph{Unconditional jump}
+As an experimentation, a unconditional jump can be forced by using the signal $[J]$, containing the next instruction address. 
+
+\section{Memory}
+\begin{tabular}{l | l | l  l}
+[E] & NAME & ARGS [signal]:type & DESC \\
+01 & LOAD-A & [1]:address & $A = MEM[1]$\\
+02 & STORE-A & [1]:address & $MEM[1] = A$\\
+18 & LOAD-VEC & [1]:address & $\vec{V} = \vec{MEM[1]}$\\
+19 & LOAD-VMASK & [1]:address & $\vec{V_{mask}} = \vec{MEM[1]}$\\
+20 & STORE-VEC & [1]:address & $\vec{MEM[1]} = \vec{V}$\\
+21 & STORE-VMASK & [1]:address & $\vec{MEM[1]} = \vec{V_{mask}}$\\
+\end{tabular}
+
+\section{Jump and conditionals}
+\begin{tabular}{l | l | l  l}
+[E] & NAME & ARGS [signal]:type & DESC \\
+-- & JMP & [J]:address & PC = [J]\\
+03 & JMP-A-EQ & [1]:address, [2]:address & IF ($A = MEM[2]$): PC = [1]\\
+04 & JMP-A-LT & [1]:address, [2]:address & IF ($A < MEM[2]$): PC = [1]\\
+05 & JMP-A-LE & [1]:address, [2]:address & IF ($A \le MEM[2]$): PC = [1]\\
+06 & JMP-A-GT & [1]:address, [2]:address & IF ($A > MEM[2]$): PC = [1]\\
+07 & JMP-A-GE & [1]:address, [2]:address & IF ($A \ge MEM[2]$): PC = [1]\\
+08 & JMP-A-NE & [1]:address, [2]:address & IF ($A \ne MEM[2]$): PC = [1]\\
+10 & JMP-V-EQ & [1]:address & IF ($A = MEM[1]$): PC = A\\
+11 & JMP-V-LT & [1]:address & IF ($A < MEM[1]$): PC = A\\
+12 & JMP-V-LE & [1]:address & IF ($A \le MEM[1]$): PC = A\\
+13 & JMP-V-GT & [1]:address & IF ($A > MEM[1]$): PC = A\\
+14 & JMP-V-GE & [1]:address & IF ($A \ge MEM[1]$): PC = A\\
+15 & JMP-V-NE & [1]:address & IF ($A \ne MEM[1]$): PC = A\\
+\end{tabular}
+
+\section{Arithmetic}
+\begin{tabular}{l | l | l  l}
+[E] & NAME & ARGS [signal]:type & DESC \\
+09 & ARITHM & [1]:address, [2]:value=1 & $A = A \mathbf{*} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=2 & $A = A \mathbf{/} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=3 & $A = A \mathbf{+} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=4 & $A = A \mathbf{-} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=5 & $A = A \mathbf{\%} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=6 & $A = A^{MEM[1]}$\\  
+09 & ARITHM & [1]:address, [2]:value=7 & $A = A \mathbf{<<} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=8 & $A = A \mathbf{>>} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=9 & $A = A \mathbf{\&} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=10 & $A = A \mathbf{|} MEM[1]$\\  
+09 & ARITHM & [1]:address, [2]:value=11 & $A = A \mathbf{xor} MEM[1]$\\  
+16 & NOT-A & & $A = !A$\\ 
+\end{tabular}
+
+\section{Vectorial}
+\begin{tabular}{l | l | l  l}
+[E] & NAME & ARGS [signal]:type & DESC \\
+17 & VEC-VEC & [1]:address, [2]:value=1 & $\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{*} \vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=2 & $\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{/} \vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=3 & $\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{+} \vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=4 & $\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{-} \vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=5 & $\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{\%} \vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=6 & $\vec{V} = (\vec{V}\&\vec{V_{mask}})^{\vec{MEM[1]}}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=7 & $\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{<<}\vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=8 & $\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{>>}\vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=9 & $\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{\&}\vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=10 &$\vec{V} = (\vec{V}\&\vec{V_{mask}}) \mathbf{|}\vec{MEM[1]}$\\  
+17 & VEC-VEC & [1]:address, [2]:value=11 & $\vec{V} = (\vec{V}\&\vec{V_{mask}})  \mathbf{xor}\vec{MEM[1]}$\\  
+22 & NOT-VEC & & $\vec{V} = !(\vec{V}\&\vec{V_{mask}})$\\ 
+\end{tabular}
